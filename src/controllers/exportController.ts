@@ -1,4 +1,4 @@
-import { exportToExcel, exportToPDF } from '../utils/exportUtils';
+// import { exportToExcel, exportToPDF } from '../utils/exportUtils';
 import { NextFunction, Request, RequestHandler, Response } from 'express';
 import {db} from '../database/models';
 
@@ -39,10 +39,10 @@ export const exportExcel: RequestHandler = async (req: Request, res: Response, n
     }));
 
     // Export data to Excel
-    const filePath = exportToExcel(data, 'Transactions');
-    res.download(filePath, 'Transactions.xlsx', (err: any) => {
-      if (err) console.error('Error downloading Excel:', err);
-    });
+    // const filePath = exportToExcel(data, 'Transactions');
+    // res.download(filePath, 'Transactions.xlsx', (err: any) => {
+    //   if (err) console.error('Error downloading Excel:', err);
+    // });
   } catch (error) {
     console.error('Error exporting Excel:', error);
     res.status(500).json({ message: 'Internal server error',error });
@@ -55,10 +55,10 @@ export const exportPDF = async (req: any, res: { download: (arg0: string, arg1: 
       { Name: 'John Doe', Age: 30, Email: 'john@example.com' },
       { Name: 'Jane Doe', Age: 25, Email: 'jane@example.com' },
     ];
-    const filePath = exportToPDF(data, 'UserData');
-    res.download(filePath, 'UserData.pdf', (err: any) => {
-      if (err) console.error('Error downloading PDF:', err);
-    });
+    // const filePath = exportToPDF(data, 'UserData');
+    // res.download(filePath, 'UserData.pdf', (err: any) => {
+    //   if (err) console.error('Error downloading PDF:', err);
+    // });
   } catch (error) {
     console.error('Error exporting PDF:', error);
     res.status(500).json({ message: 'Internal server error' });

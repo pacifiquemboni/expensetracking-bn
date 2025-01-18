@@ -5,7 +5,7 @@
     "target": "es6",
     "esModuleInterop": true,
     "allowJs": true,
-    "outDir": "dist",
+    "outDir": "./dist",
     "strict": true,
     "skipLibCheck": true,
     "types": ["node"]

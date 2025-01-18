@@ -9,7 +9,7 @@
     "outDir": "./dist",
     "strict": true,
     "skipLibCheck": true,
-    "types": ["node", "dotenv"]
+    "types": ["node"]
   },
   "typeRoots": ["./src/types", "./node_modules/@types"],
   "include": ["src/**/*", "src/database/models"],   // Include all files in src

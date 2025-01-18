@@ -4,7 +4,7 @@ import CategoryController from '../controllers/categoryController';
 const router: Router = express.Router();
 
 // Register a new category
-router.post('/register', async (req, res, next) => {
+router.post('/register/:userId', async (req, res, next) => {
   try {
     await CategoryController.registerCategory(req, res, next);
   } catch (error) {
@@ -13,7 +13,7 @@ router.post('/register', async (req, res, next) => {
 });
 
 // Register a new subcategory
-router.post('/register/sub', async (req, res, next) => {
+router.post('/subcategory', async (req, res, next) => {
   try {
     await CategoryController.registerSubCategory(req, res, next);
   } catch (error) {

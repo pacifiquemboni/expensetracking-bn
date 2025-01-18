@@ -11,14 +11,22 @@ router.post('/create/:user_id', async (req, res, next) => {
     next(error);
   }
 });
-// Get a single transaction by ID
-router.get('/:id', async (req, res, next) => {
-    try {
-      await TransactionController.getTransaction(req, res, next);
-    } catch (error) {
-      next(error);
-    }
-  });
+// // Get a single transaction by ID
+// router.get('/:id', async (req, res, next) => {
+//     try {
+//       await TransactionController.getTransaction(req, res, next);
+//     } catch (error) {
+//       next(error);
+//     }
+//   });
+  // Get all user transactions
+router.get('/:user_id', async (req, res, next) => {
+  try {
+    await TransactionController.getUserTransactions(req, res, next);
+  } catch (error) {
+    next(error);
+  }
+});
   // Get all transactions
 router.get('/', async (req, res, next) => {
     try {

@@ -5,7 +5,8 @@ import { db } from '../database/models';
 export default class CategoryController {
     static async registerCategory(req: Request, res: Response, next: NextFunction): Promise<void> {
         try {
-            const { name, type, userId } = req.body;
+            const userId = req.params.userId; // Get userId from the URL parameter
+            const { name, type } = req.body;
 
             // Check if the Category already exists
             const existingCategory = await db.Category.findOne({ where: { name, userId } });
@@ -92,6 +93,7 @@ export default class CategoryController {
             if (existingSubCategory) {
                 return res.status(400).json({ message: 'SubCategory already exists' });
             }
+console.log('category_id', category_id);
 
             // Create a new SubCategory
             const newSubCategory = await db.SubCategory.create({
@@ -105,7 +107,7 @@ export default class CategoryController {
             return res.status(201).json({ message: 'SubCategory registered successfully', subCategory: newSubCategory });
         } catch (error) {
             console.error('Error registering subCategory:', error);
-            return res.status(500).json({ message: 'Internal server error' });
+            return res.status(500).json({ message: 'Internal server error', error });
         }
     }
 

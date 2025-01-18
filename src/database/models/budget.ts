@@ -38,6 +38,11 @@ module.exports = (sequelize: any, DataTypes: any) => {
         type: DataTypes.DECIMAL,
         allowNull: false,
       },
+      status: {
+        type: DataTypes.DECIMAL,
+        allowNull: false,
+        defaultValue: "active",
+      },
       start_date: {
         type: DataTypes.DATE,
         allowNull: false,

@@ -34,21 +34,35 @@ export default class TransactionController {
             res.status(500).json({ message: 'Internal server error', error });
         }
     }
-    static async getTransaction(req: Request, res: Response, next: NextFunction): Promise<void> {
+    static async getUserTransactions(req: Request, res: Response, next: NextFunction): Promise<void> {
         try {
-            const { id } = req.params;
-            const transaction = await db.Transaction.findByPk(id);
-
-            if (!transaction) {
-                res.status(404).json({ message: 'Transaction not found' });
+            const user_id = req.params.user_id; // Get userId from the URL parameter
+            if (!user_id) {
+                res.status(401).json({ message: 'UserId is Missing' });
             }
-
-            res.status(200).json({ transaction });
+            const transactions = await db.Transaction.findAll({ where: { user_id } });
+            res.status(200).json({ transactions });
         } catch (error) {
-            console.error('Error fetching Transaction:', error);
-            res.status(500).json({ message: 'Internal server error', error });
+            console.error('Error fetching transactions:', error);
+        res.status(500).json({ message: 'Internal server error' });
         }
     }
+    // static async getTransaction(req: Request, res: Response, next: NextFunction): Promise<void> {
+    //     try {
+    //         const { id } = req.params;
+    //         const transaction = await db.Transaction.findByPk(id);
+
+    //         if (!transaction) {
+    //             res.status(404).json({ message: 'Transaction not found' });
+    //         }
+
+    //         res.status(200).json({ transaction });
+    //     } catch (error) {
+    //         console.error('Error fetching Transaction:', error);
+    //         res.status(500).json({ message: 'Internal server error', error });
+    //     }
+    // }
+    
     static async getAllTransactions(req: Request, res: Response, next: NextFunction): Promise<void> {
         try {
             const transactions = await db.Transaction.findAll();

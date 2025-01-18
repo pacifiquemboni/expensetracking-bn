@@ -7,7 +7,8 @@
     "allowJs": true,
     "outDir": "dist",
     "strict": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "types": ["node"]
   },
   "typeRoots": ["./src/types", "./node_modules/@types"],
   "include": ["src/**/*", "src/database/models"],   // Include all files in src

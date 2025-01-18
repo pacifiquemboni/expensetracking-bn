@@ -1,7 +1,8 @@
 import express from "express";
 import { sequelize } from "./database/config/database";
-import dotenv from "dotenv";
+import * as dotenv from 'dotenv';
 import routes from "./routes";
+import cors from 'cors';
 
 // Load environment variables
 dotenv.config();
@@ -11,7 +12,13 @@ const PORT = 3000;
 
 // Middleware to parse JSON requests
 app.use(express.json());
-app.use('/api', routes)
+
+// Enable CORS for all routes
+app.use(cors());
+
+// Use routes
+app.use('/api', routes);
+
 // Test the database connection here
 sequelize
   .authenticate()

@@ -8,9 +8,9 @@
     "dev": "nodemon src/index.ts",
     "migrate": "npx sequelize-cli db:migrate",
     "migrate:all": "npx sequelize-cli db:migrate:all",
+    "migrate:undo": "npx sequelize-cli db:migrate:undo",
     "seed": "npx sequelize-cli db:seed:all",
     "sequelize": "ts-node ./node_modules/.bin/sequelize",
-    "migrate:undo": "npx sequelize-cli db:migrate:undo",
     "seed:undo": "npx sequelize-cli db:seed:undo:all"
   },
   "keywords": [],
@@ -20,7 +20,6 @@
   "devDependencies": {
     "@types/bcrypt": "^5.0.2",
     "@types/cors": "^2.8.17",
-    "@types/dotenv": "^6.1.1",
     "@types/jsonwebtoken": "^9.0.7",
     "@types/node": "^22.10.5",
     "@types/pdfkit": "^0.13.8",

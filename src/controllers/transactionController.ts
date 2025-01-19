@@ -47,22 +47,45 @@ export default class TransactionController {
         res.status(500).json({ message: 'Internal server error' });
         }
     }
-    // static async getTransaction(req: Request, res: Response, next: NextFunction): Promise<void> {
-    //     try {
-    //         const { id } = req.params;
-    //         const transaction = await db.Transaction.findByPk(id);
-
-    //         if (!transaction) {
-    //             res.status(404).json({ message: 'Transaction not found' });
-    //         }
-
-    //         res.status(200).json({ transaction });
-    //     } catch (error) {
-    //         console.error('Error fetching Transaction:', error);
-    //         res.status(500).json({ message: 'Internal server error', error });
-    //     }
-    // }
     
+    static async getUserExpenseTransactionsWithTotal(req: Request, res: Response, next: NextFunction){
+        try {
+            const user_id = req.params.user_id; // Get userId from the URL parameter
+            if (!user_id) {
+                return res.status(401).json({ message: 'UserId is Missing' });
+            }
+
+            const transactions = await db.Transaction.findAll({
+                where: { user_id, type: 'expense' }
+            });
+
+            const totalAmount = transactions.reduce((total: number, transaction: { amount: string; }) => total + parseFloat(transaction.amount), 0);
+
+            res.status(200).json({ transactions, totalAmount });
+        } catch (error) {
+            console.error('Error fetching expense transactions:', error);
+            res.status(500).json({ message: 'Internal server error', error });
+        }
+    }
+    static async getUserIncomeTransactionsWithTotal(req: Request, res: Response, next: NextFunction){
+        try {
+            const user_id = req.params.user_id; // Get userId from the URL parameter
+            if (!user_id) {
+                return res.status(401).json({ message: 'UserId is Missing' });
+            }
+
+            const transactions = await db.Transaction.findAll({
+                where: { user_id, type: 'income' }
+            });
+
+            const totalAmount = transactions.reduce((total: number, transaction: { amount: string; }) => total + parseFloat(transaction.amount), 0);
+
+            res.status(200).json({ transactions, totalAmount });
+        } catch (error) {
+            console.error('Error fetching expense transactions:', error);
+            res.status(500).json({ message: 'Internal server error', error });
+        }
+    }
     static async getAllTransactions(req: Request, res: Response, next: NextFunction): Promise<void> {
         try {
             const transactions = await db.Transaction.findAll();

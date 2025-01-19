@@ -29,6 +29,7 @@ export default class CategoryController {
             res.status(500).json({ message: 'Internal server error' });
         }
     }
+    
 
     static async getAllCategories(req: Request, res: Response, next: NextFunction) {
         try {

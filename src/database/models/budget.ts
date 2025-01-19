@@ -39,7 +39,7 @@ module.exports = (sequelize: any, DataTypes: any) => {
         allowNull: false,
       },
       status: {
-        type: DataTypes.DECIMAL,
+        type: DataTypes.STRING,
         allowNull: false,
         defaultValue: "active",
       },

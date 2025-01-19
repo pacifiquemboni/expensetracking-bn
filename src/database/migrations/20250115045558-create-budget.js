@@ -34,7 +34,7 @@ module.exports = {
         allowNull: false,
       },
       status: {
-        type: Sequelize.DECIMAL,
+        type: Sequelize.STRING,
         allowNull: false,
       },
       start_date: {

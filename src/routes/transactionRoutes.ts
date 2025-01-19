@@ -11,6 +11,22 @@ router.post('/create/:user_id', async (req, res, next) => {
     next(error);
   }
 });
+// Get all transactions with type expense and their total amount for the current user
+router.get('/expenses/total/:user_id',  async (req, res, next) => {
+  try {
+    await TransactionController.getUserExpenseTransactionsWithTotal(req, res, next);
+  } catch (error) {
+    next(error);
+  }
+});
+// Get all transactions with type eincome and their total amount for the current user
+router.get('/income/total/:user_id',  async (req, res, next) => {
+  try {
+    await TransactionController.getUserIncomeTransactionsWithTotal(req, res, next);
+  } catch (error) {
+    next(error);
+  }
+});
 // // Get a single transaction by ID
 // router.get('/:id', async (req, res, next) => {
 //     try {
